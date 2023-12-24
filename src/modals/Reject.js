@@ -85,7 +85,7 @@ const Reject = ({ patient }) => {
           </div>
           <div className="m-3">
             <label htmlFor="exampleFormControlTextarea1" className="form-label">Rejection message</label>
-            <textarea onChange={(e) => Setmessage(e.target.value)} className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea required onChange={(e) => Setmessage(e.target.value)} className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
           </div>
           <div className="modal-footer">
             <button type="button" onClick={() => deleteApplication("GrantEase - disability grant update")} className="btn btn-secondary" data-bs-dismiss="modal">Yes, reject</button>
