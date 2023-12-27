@@ -1,11 +1,13 @@
-import {Outlet, useNavigate} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import coverimg from '../assets/moneyguy.jpg';
 import values from '../assets/value.jpg';
 import mission from '../assets/mission.jpg';
 import logo from '../assets/moneybag.png';
 import { useContext } from 'react';
 import { AppContext } from '../States/AppState';
-const ParentLayout = () => {
+
+const AppHeader = () => {
+
     const {currentTab, setcurrentTab}=useContext(AppContext);
     const navigate = useNavigate();
     const changeRoute=(tab)=>{
@@ -14,12 +16,10 @@ const ParentLayout = () => {
             setcurrentTab(tab);
         }else if(tab==='Incoming'){
             setcurrentTab(tab);
-        }
-       
+        } 
     }
     return ( 
-        <div className="ParentLayout">
-            {/* <header>
+        <header>
             <nav className="navbar navbar-light bg-light">
                 <div className="container-fluid">
                 <div className='d-flex flex-row justify-content-center align-items-center'><img src={logo} alt="" width="30" height="24"/> <h4 className="navbar-brand">GrantEase</h4></div>
@@ -85,13 +85,8 @@ const ParentLayout = () => {
                     <span style={{ margin: '5px' }} className="badge bg-success">welcome, Admin</span>
                 </div>
             </div>
-            </header> */}
-            <main>
-                <Outlet/>
-            </main>
-
-        </div>
+            </header>
      );
 }
  
-export default ParentLayout;
+export default AppHeader;
