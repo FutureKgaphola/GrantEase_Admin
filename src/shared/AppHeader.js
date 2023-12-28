@@ -5,6 +5,7 @@ import mission from '../assets/mission.jpg';
 import logo from '../assets/moneybag.png';
 import { useContext } from 'react';
 import { AppContext } from '../States/AppState';
+import { Button } from 'flowbite-react';
 
 const AppHeader = () => {
 
@@ -25,12 +26,14 @@ const AppHeader = () => {
                 <div className='d-flex flex-row justify-content-center align-items-center'><img src={logo} alt="" width="30" height="24"/> <h4 className="navbar-brand">GrantEase</h4></div>
                     
                     <form className="d-flex">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        
-                        <button onClick={()=>navigate('/ShowDoctors')} data-bs-toggle="tooltip" data-bs-placement="bottom" title="manage doctors" style={{ marginLeft: "5px" }}
+                        <Button onClick={()=>navigate('/Feeds')} data-bs-toggle="tooltip" data-bs-placement="bottom" title="manage doctors" style={{ marginLeft: "5px" }}
                             type="button"
                             className="btn btn-success"
-                        ><i className="fa fa-address-book" aria-hidden="true"></i></button>
+                        ><i className="fa fa-rss-square" aria-hidden="true"></i></Button>
+                        <Button onClick={()=>navigate('/ShowDoctors')} data-bs-toggle="tooltip" data-bs-placement="bottom" title="manage doctors" style={{ marginLeft: "5px" }}
+                            type="button"
+                            className="btn btn-success"
+                        ><i className="fa fa-address-book" aria-hidden="true"></i></Button>
 
                     </form>
                 </div>

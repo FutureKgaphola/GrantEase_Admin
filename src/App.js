@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import ShowDoctors from './components/ShowDoctors';
 import { AppProvider } from './States/AppState';
+import Feeds from './components/Feeds';
 
 const router= createBrowserRouter(
   createRoutesFromElements(
@@ -14,6 +15,7 @@ const router= createBrowserRouter(
           <Route path='/'  element={<Login/>}/>
           <Route path='dashboard' element={<Dashboard/>}/>
           <Route path='ShowDoctors' element={<ShowDoctors/>}/>
+          <Route path='Feeds' element={<Feeds/>}/>
           <Route path='*' element={<Comp404/>}/>
       </Route>
   )

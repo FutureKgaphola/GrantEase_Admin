@@ -109,7 +109,7 @@ const ShowDoctors = () => {
                                 <tr key={item.id}>
                                     <th scope="row">{item.Name}</th>
                                     <td>{item.Email}</td>
-                                    <td>{item.NextavailDate}</td>
+                                    <td>{item.firstD} & {item.secondD}</td>
                                     <td>{item.OfficePhone}</td>
                                     <td>{item.Profession}</td>
                                     <td>{item.Numpatients}</td>
