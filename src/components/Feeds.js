@@ -1,7 +1,6 @@
 import AppHeader from "../shared/AppHeader";
 import { Button, Card, Modal } from 'flowbite-react'; 
 import { useEffect, useState } from 'react';
-import mission from '../assets/mission.jpg'
 import { HiOutlineExclamationCircle, HiNewspaper } from 'react-icons/hi';
 import FeedsModal from "../modals/Feeds_Modal";
 import { collection, onSnapshot, query } from "firebase/firestore";
@@ -10,11 +9,21 @@ import { db } from "../DbConnection/firebaseDb";
 const Feeds = () => {
   const [openModal, setOpenModal] = useState(false);
   const[Feeds,setFeeds]=useState([]);
-  const AreyouSure = () => {
-
-  }
+  const [FeedData,setFeedData]=useState(null);
+ 
   const readMore=(url)=>{
+    //open a new tab with the url given
+  }
 
+  const IamSure=()=>{
+    //write delete feed code here
+
+    //table Name is 'Feeds'
+    //Id to delete with is given below as 'IdToDelete'
+    // refere to this link to delete a document -> https://firebase.google.com/docs/firestore/manage-data/delete-data
+    let IdToDelete=FeedData.id;
+
+    setOpenModal(false);
   }
 
   useEffect(() => {
@@ -46,7 +55,10 @@ const Feeds = () => {
               <img className="max-w-sm" src={feed.tumbnail.trim()} alt={'logo'} style={{ aspectRatio:3/3 }}/>
 
               <div className="flex flex-wrap hover:cursor-pointer">
-                <Button size="xs" onClick={() => setOpenModal(true)} color="failure">
+                <Button size="xs" onClick={() => {
+                  setFeedData(feed);
+                  setOpenModal(true);
+                }} color="failure">
                   Delete
                 </Button>
 
@@ -84,7 +96,7 @@ const Feeds = () => {
               Are you sure you want to delete this product?
             </h3>
             <div className="flex justify-center gap-4">
-              <Button color="failure" onClick={() => setOpenModal(false)}>
+              <Button color="failure" onClick={() => IamSure()}>
                 {"Yes, I'm sure"}
               </Button>
               <Button color="gray" onClick={() => setOpenModal(false)}>

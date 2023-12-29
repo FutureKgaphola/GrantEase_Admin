@@ -7,9 +7,10 @@ import { Link } from "react-router-dom";
 import { v4 } from 'uuid';
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { failure, success } from "../notifications/SuccessError";
-import { Dropdown,Button } from 'flowbite-react';
+import { Dropdown,Button,Modal } from 'flowbite-react';
+import { HiOutlineExclamationCircle } from 'react-icons/hi';
 const Assigned = () => {
-
+    const [openModal, setOpenModal] = useState(false);
     const [patient, setPatient] = useState({});
     const [search, setsearch] = useState('');
     const [applications, setapplications] = useState([]);
@@ -93,7 +94,7 @@ const Assigned = () => {
                                             <div className="dropdown">
                                                 
                                                 <Dropdown  color="success" label="Take action" size="sm">
-                                                    <Dropdown.Item  data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={() => setPatient(task)} >finacially approve</Dropdown.Item>
+                                                    <Dropdown.Item onClick={() => setOpenModal(true)} >finacially approve</Dropdown.Item>
                                                     <Dropdown.Item data-bs-toggle="modal" data-bs-target="#Rejection" onClick={() => setPatient(task)}>Reject</Dropdown.Item>
                                                     <Dropdown.Item><Button  color="success" onClick={() => SaveRecord(task.id,task.userId)} size="xs">{task.Hrfile.includes('http') ? "Update" : "Save"}</Button></Dropdown.Item>
                                                 </Dropdown>
@@ -112,7 +113,25 @@ const Assigned = () => {
                 }
             </div>
             <Reject patient={patient} />
-            <Doctors patient={patient} />
+            <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup>
+        <Modal.Header />
+        <Modal.Body>
+          <div className="text-center">
+            <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+            <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+              Are you sure you want financially approve this person?
+            </h3>
+            <div className="flex justify-center gap-4">
+              <Button color="success" onClick={() => setOpenModal(false)}>
+                {"Yes, I'm sure"}
+              </Button>
+              <Button color="gray" onClick={() => setOpenModal(false)}>
+                No, cancel
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
         </div>
     );
 }
