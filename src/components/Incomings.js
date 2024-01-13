@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { collection, onSnapshot, query, where, addDoc, deleteDoc, doc } from "firebase/firestore";
 import { db } from '../DbConnection/firebaseDb';
 import logo from '../assets/moneybag.png';
@@ -9,9 +9,11 @@ import { failure, success } from "../notifications/SuccessError";
 import { Button, Datepicker } from 'flowbite-react';
 import { Toast } from 'flowbite-react';
 import { HiCheck } from 'react-icons/hi';
-
+import { AppContext } from "../States/AppState";
+import { Spinner } from 'flowbite-react';
 
 const Incomings = () => {
+    const { sending, setsending } = useContext(AppContext);
     const [patient, setPatient] = useState({});
     const [search, setsearch] = useState('');
     const [applications, setapplications] = useState([]);
@@ -114,8 +116,10 @@ const Incomings = () => {
                                                                     <li onClick={() => setPatient(task)} className="dropdown-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Assign Doctor</li>
                                                                     <li onClick={() => setPatient(task)} className="dropdown-item" data-bs-toggle="modal" data-bs-target="#Rejection">Reject</li>
                                                                 </ul>
+                                                                {sending && <Spinner aria-label="Default status example" />}
                                                             </div>
                                                             <p className="card-text"><small className="text-muted">Date applied : {task.applyDate}</small></p>
+
                                                         </div>
                                                     </div>
                                                 </div>

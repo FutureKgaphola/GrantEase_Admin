@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { failure, success } from "../notifications/SuccessError";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../DbConnection/firebaseDb";
 import sendEmail from "../mailer/sendEmail";
 import { Button } from "flowbite-react";
+import { AppContext } from "../States/AppState";
 
 const IllnessModal = ({ patient }) => {
+  const { sending, setsending } = useContext(AppContext);
     const { userId, email, name } = patient;
     const [message, Setmessage] = useState("");
     const acceptApplication=(subject)=>{
@@ -13,10 +15,13 @@ const IllnessModal = ({ patient }) => {
         if(userId!==''  && message.trim()!==''){
             setDoc(doc(db, 'users', userId.trim()), { finance: 'approved', medical: 'approved',applied:'done all good' }, { merge: true }).then(() => {
                 try {
+                  setsending(true);
                     sendEmail(email, name, "Your application was successful and your illness has been cornfirmed as : "+message, subject).then(()=>{
                         success('Successful');
+                        setsending(false);
                     }).catch(err=>{failure(String(err));})
                 } catch (error) {
+                  setsending(false);
                     failure(String(error));
                 }
                 

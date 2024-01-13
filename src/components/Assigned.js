@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { addDoc, collection, deleteDoc, doc, onSnapshot, query, setDoc, where } from "firebase/firestore";
 import { db, storage } from '../DbConnection/firebaseDb';
 import Reject from '../modals/Reject';
@@ -12,7 +12,10 @@ import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import IllnessModal from "../modals/IllnessModal";
 import { Toast } from 'flowbite-react';
 import { HiCheck } from 'react-icons/hi';
+import { AppContext } from "../States/AppState";
+import { Spinner } from 'flowbite-react';
 const Assigned = () => {
+    const { sending, setsending } = useContext(AppContext);
     const [openModal, setOpenModal] = useState(false);
     const [patient, setPatient] = useState({});
     const [pdates, setDates] = useState('');
@@ -166,7 +169,8 @@ const Assigned = () => {
                                                                     <Dropdown.Item data-bs-toggle="modal" data-bs-target="#Rejection" onClick={() => setPatient(task)}>Reject</Dropdown.Item>
                                                                     <Dropdown.Item><Button color="success" onClick={() => SaveRecord(task.id, task.userId)} size="xs">{task.medReport.includes('http') ? "Update" : "Save"}</Button></Dropdown.Item>
                                                                 </Dropdown>
-
+                                                                {sending && <Spinner aria-label="Default status example" />}
+                                                                
                                                             </div>
                                                             <p className="card-text"><small className="text-muted">Date applied : {task.applyDate}</small></p>
                                                         </div>

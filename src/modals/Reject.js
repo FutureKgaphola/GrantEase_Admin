@@ -2,11 +2,13 @@ import { getStorage, ref, deleteObject } from "firebase/storage";
 import { db } from "../DbConnection/firebaseDb";
 import { doc, setDoc, deleteDoc, query, collection, where, onSnapshot } from "firebase/firestore";
 import sendEmail from "../mailer/sendEmail";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Modal } from "antd";
 import { Button } from "flowbite-react";
+import { AppContext } from "../States/AppState";
 
 const Reject = ({ patient }) => {
+  const { sending, setsending } = useContext(AppContext);
   const [message, Setmessage] = useState("");
   const { userId, fileName, HrfileName, id, email, name } = patient;
   const storage = getStorage();
@@ -54,12 +56,16 @@ const Reject = ({ patient }) => {
             })
 
             try {
+              setsending(true);
               sendEmail(email, name, message, subject).then(() => {
+                setsending(false);
                 success();
               }).catch(err => {
+                setsending(false);
                 failure(String(err));
               });
             } catch (error) {
+              setsending(false);
               failure(String(error));
             }
           })
