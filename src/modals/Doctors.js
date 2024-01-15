@@ -27,7 +27,7 @@ const Doctors = ({patient}) => {
 
     const assignClient=(item)=>{
         let {Numpatients,maxPatient,firstD,id,Name,Profession}=item;
-        console.log();
+        
         let value=parseInt(Numpatients)+1;
         const update={
             Numpatients:String(value)
@@ -48,7 +48,10 @@ const Doctors = ({patient}) => {
                     specialization:Profession,
                     timebooked:'08H00',
                 }
+                //console.log(data);
                 addDoc(collection(db, 'Apointments'),data).then(resp=>{
+                    //console.log('data sent');
+                    //console.log(data);
                     setDoc(doc(db, 'Applications', applicationId.trim()), {doctorId:id,doctorName:Name}, { merge: true });
                     success("Assigned a patient to a doctor");
                 }).catch(err=>{console.log(String(err))});
@@ -74,7 +77,7 @@ const Doctors = ({patient}) => {
                                     <div className="card-body">
                                         <h5 className="card-title">Dr {item.Name}</h5>
                                         <p className="card-text">Current no. of patients : {item.Numpatients}/{item.maxPatient}</p>
-                                        <p className="card-text">Next availability date {item.NextavailDate}</p>
+                                        <p className="card-text">Date availabile {item.firstD}</p>
                                         <Button color="light" onClick={() => assignClient(item)} type="button" data-bs-dismiss="modal">assign</Button>
                                     </div>
                                 </div>
