@@ -26,7 +26,8 @@ const Doctors = ({patient}) => {
     }, []);
 
     const assignClient=(item)=>{
-        let {Numpatients,maxPatient,NextavailDate,id,Name,Profession}=item;
+        let {Numpatients,maxPatient,firstD,id,Name,Profession}=item;
+        console.log();
         let value=parseInt(Numpatients)+1;
         const update={
             Numpatients:String(value)
@@ -35,7 +36,7 @@ const Doctors = ({patient}) => {
             setDoc(doc(db, 'Doctors', id.trim()), update, { merge: true }).then(()=>{
                 const data={
                     bin:'no_',
-                    dateapoint:NextavailDate,
+                    dateapoint:firstD,
                     doctor:Name,
                     doctorId:id,
                     doctorImage:'none',
@@ -45,7 +46,7 @@ const Doctors = ({patient}) => {
                     resheduleStatus:'not set',
                     sheduleRequestDate:'none',
                     specialization:Profession,
-                    timebooked:'15:h45'
+                    timebooked:'08H00',
                 }
                 addDoc(collection(db, 'Apointments'),data).then(resp=>{
                     setDoc(doc(db, 'Applications', applicationId.trim()), {doctorId:id,doctorName:Name}, { merge: true });

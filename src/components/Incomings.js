@@ -6,7 +6,7 @@ import Reject from '../modals/Reject';
 import Doctors from '../modals/Doctors';
 import { Link } from "react-router-dom";
 import { failure, success } from "../notifications/SuccessError";
-import { Button, Datepicker } from 'flowbite-react';
+import { Button, Datepicker, Dropdown } from 'flowbite-react';
 import { Toast } from 'flowbite-react';
 import { HiCheck } from 'react-icons/hi';
 import { AppContext } from "../States/AppState";
@@ -102,20 +102,20 @@ const Incomings = () => {
                                                 <div className="row g-0">
                                                     <div className="col-md-4">
                                                         <img src={task.profileimage.includes('https://') ? task.profileimage : logo} className="img-fluid" style={{ objectFit: 'contain', borderRadius: '100px', marginTop: '5px' }} alt="..." />
-                                                        <Link to={task.filelink} target='_blank' style={{ alignSelf: 'center', marginTop: '5px' }} className="btn btn-outline-dark btn-sm">Document(s)</Link>
+                                                        <Link to={task.filelink} target='_blank' style={{ alignSelf: 'center', marginTop: '5px',marginBottom:'5px' }} className="btn btn-outline-dark btn-sm">Document(s)</Link>
                                                     </div>
                                                     <div className="col-md-8">
                                                         <div className="card-body">
                                                             <h5 className="card-title">{task.name}</h5>
                                                             <p className="card-text">{task.said}</p>
+
+                                                            
+
                                                             <div className="dropdown">
-                                                                <button className="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                    Take Action
-                                                                </button>
-                                                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                                    <li onClick={() => setPatient(task)} className="dropdown-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Assign Doctor</li>
-                                                                    <li onClick={() => setPatient(task)} className="dropdown-item" data-bs-toggle="modal" data-bs-target="#Rejection">Reject</li>
-                                                                </ul>
+                                                            <Dropdown color="success" label="Take action" size="sm">
+                                                                    <Dropdown.Item onClick={() => setPatient(task)}  data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Assign Doctor</Dropdown.Item>
+                                                                    <Dropdown.Item onClick={() => setPatient(task)}  data-bs-toggle="modal" data-bs-target="#Rejection">Reject</Dropdown.Item>
+                                                                 </Dropdown>
                                                                 {sending && <Spinner aria-label="Default status example" />}
                                                             </div>
                                                             <p className="card-text"><small className="text-muted">Date applied : {task.applyDate}</small></p>

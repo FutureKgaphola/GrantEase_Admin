@@ -123,6 +123,7 @@ const Assigned = () => {
                 <div className="col">
                     <div className="Dashboard p-3 bg-zinc-300 border" >
                         <div className="row p-1">
+                            {sending && <Spinner aria-label="approving request..."  size="md"/> }
                             {
                                 applications.length > 0 ? applications
                                     .map((task) => {
@@ -169,7 +170,7 @@ const Assigned = () => {
                                                                     <Dropdown.Item data-bs-toggle="modal" data-bs-target="#Rejection" onClick={() => setPatient(task)}>Reject</Dropdown.Item>
                                                                     <Dropdown.Item><Button color="success" onClick={() => SaveRecord(task.id, task.userId)} size="xs">{task.medReport.includes('http') ? "Update" : "Save"}</Button></Dropdown.Item>
                                                                 </Dropdown>
-                                                                {sending && <Spinner aria-label="Default status example" />}
+                                                                
                                                                 
                                                             </div>
                                                             <p className="card-text"><small className="text-muted">Date applied : {task.applyDate}</small></p>

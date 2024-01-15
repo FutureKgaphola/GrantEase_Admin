@@ -13,7 +13,7 @@ const IllnessModal = ({ patient }) => {
     const acceptApplication=(subject)=>{
         
         if(userId!==''  && message.trim()!==''){
-            setDoc(doc(db, 'users', userId.trim()), { finance: 'approved', medical: 'approved',applied:'done all good' }, { merge: true }).then(() => {
+            setDoc(doc(db, 'users', userId.trim()), {illness:message.trim(), finance: 'approved', medical: 'approved',applied:'done all good' }, { merge: true }).then(() => {
                 try {
                   setsending(true);
                     sendEmail(email, name, "Your application was successful and your illness has been cornfirmed as : "+message, subject).then(()=>{
