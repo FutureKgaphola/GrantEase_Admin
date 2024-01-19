@@ -47,6 +47,7 @@ const Doctors = ({patient}) => {
                     sheduleRequestDate:'none',
                     specialization:Profession,
                     timebooked:'08H00',
+                    addrs:"Mankweng Hospital"
                 }
                 //console.log(data);
                 addDoc(collection(db, 'Apointments'),data).then(resp=>{
