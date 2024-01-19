@@ -11,6 +11,7 @@ import { Toast } from 'flowbite-react';
 import { HiCheck } from 'react-icons/hi';
 import { AppContext } from "../States/AppState";
 import { Spinner } from 'flowbite-react';
+import sendSms from "../mailer/sendSms";
 
 const Incomings = () => {
     const { sending, setsending } = useContext(AppContext);
@@ -49,7 +50,6 @@ const Incomings = () => {
         });
     }, [pdates]);
 
-
     const handleDateFirst = (datef) => {
         console.log(datef.toDateString());
         setSelectedFDate(datef);
@@ -64,6 +64,8 @@ const Incomings = () => {
                 const docRef = await addDoc(collection(db, "paymentsDates"), selecPdate)
                 if (docRef.id) {
                     success("Successfully added a payment date");
+                    //sent sms to users
+                    sendSms(fDate.toDateString());
                     setSelectedFDate(null);
                 }
             } catch (error) {

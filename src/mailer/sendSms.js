@@ -1,11 +1,11 @@
-const sendEmail =async(email,name,message,subject)=>{
+const sendSms =async(paydate)=>{
     try {
-      const response = await fetch('https://nodemailapi-ge3d.onrender.com/sendemail', {
+      const response = await fetch('https://nodemailapi-ge3d.onrender.com/sendsms', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email,name,message,subject })
+        body: JSON.stringify({paydate})
       });
 
       if (!response.ok) {
@@ -15,8 +15,7 @@ const sendEmail =async(email,name,message,subject)=>{
       
     } catch (error) {
       console.log('Error:', error);
-      //console.log(email+"-"+name+"-"+message+"-"+subject);
     }
   }
 
-  export default sendEmail;
+  export default sendSms;

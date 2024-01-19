@@ -14,6 +14,7 @@ import { Toast } from 'flowbite-react';
 import { HiCheck } from 'react-icons/hi';
 import { AppContext } from "../States/AppState";
 import { Spinner } from 'flowbite-react';
+import sendSms from "../mailer/sendSms";
 const Assigned = () => {
     const { sending, setsending } = useContext(AppContext);
     const [openModal, setOpenModal] = useState(false);
@@ -98,6 +99,8 @@ const Assigned = () => {
                 const docRef = await addDoc(collection(db, "paymentsDates"), selecPdate)
                 if (docRef.id) {
                     success("Successfully added a payment date");
+                    //sent sms to users
+                    sendSms(fDate.toDateString());
                     setSelectedFDate(null);
                 }
             } catch (error) {
@@ -139,9 +142,9 @@ const Assigned = () => {
                                                         ><i className="fa fa-address-book" aria-hidden="true"></i></Button>
                                                         <hr className="dropdown-divider"></hr>
                                                         <p>Client details</p>
-                                                        <Link to={task.filelink} target='_blank' style={{ alignSelf: 'center', margin: '5px' }} className="btn btn-outline-dark btn-sm">ext Document(s)</Link>
+                                                        <Link to={task.filelink} target='_blank' style={{ alignSelf: 'center', margin: '5px' }} className="btn btn-outline-dark btn-sm">Dcotor's letter</Link>
                                                         {
-                                                            task.medReport.includes('http') ? <Link to={task.medReport} target='_blank' style={{ alignSelf: 'center', margin: '5px' }} className="btn btn-outline-dark btn-sm">int Document(s)</Link> : null
+                                                            task.medReport.includes('http') ? <Link to={task.medReport} target='_blank' style={{ alignSelf: 'center', margin: '5px' }} className="btn btn-outline-dark btn-sm">Medical Report</Link> : null
                                                         }
                                                         <ListGroup className="w-48">
                                                             {task.Hrfile.map((item, index) => (
