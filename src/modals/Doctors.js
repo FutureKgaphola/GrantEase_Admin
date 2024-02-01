@@ -26,7 +26,7 @@ const Doctors = ({patient}) => {
     }, []);
 
     const assignClient=(item)=>{
-        let {Numpatients,maxPatient,firstD,id,Name,Profession}=item;
+        let {Numpatients,maxPatient,firstD,id,Name,Profession,addrs}=item;
         
         let value=parseInt(Numpatients)+1;
         const update={
@@ -47,7 +47,7 @@ const Doctors = ({patient}) => {
                     sheduleRequestDate:'none',
                     specialization:Profession,
                     timebooked:'08H00',
-                    addrs:"Mankweng Hospital"
+                    addrs:addrs
                 }
                 //console.log(data);
                 addDoc(collection(db, 'Apointments'),data).then(resp=>{

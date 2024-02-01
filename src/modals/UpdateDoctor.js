@@ -8,7 +8,7 @@ const UpdateDoctor = ({ Docprofile }) => {
   let { id } = Docprofile;
   const [fDate, setSelectedFDate] = useState(null);
   const [sDate, setSelectedSDate] = useState(null);
-
+  const[upHospital,setHospital]=useState(null);
   const[upName,setName]=useState(null);
   const[upEmail,setEmail]=useState(null);
   const[upfirstD,setfirstD]=useState(null);
@@ -52,7 +52,7 @@ const UpdateDoctor = ({ Docprofile }) => {
   var update={};
   const validate=()=>{
     let res=true;
-    if(upName!=="" || upEmail!=="" || upfirstD!=="" || upsecondD!=="" || upProfession!==""|| upNumpatients!=="" || upmaxPatient!==""){
+    if(upName!=="" || upEmail!=="" || upfirstD!=="" || upsecondD!=="" || upProfession!==""|| upNumpatients!=="" || upmaxPatient!=="" || upHospital!==""){
       update={
         Name:upName,
         Email:upEmail,
@@ -60,6 +60,7 @@ const UpdateDoctor = ({ Docprofile }) => {
         secondD:upsecondD,
         Profession:upProfession,
         Numpatients:upNumpatients,
+        addrs:upHospital,
         maxPatient:upmaxPatient
       }
       res= true; 
@@ -117,6 +118,15 @@ const UpdateDoctor = ({ Docprofile }) => {
               <TextInput
               onChange={(e)=>setProfession(e.target.value)}
               value={upProfession} id="base" type="text" sizing="md" />
+            </div>
+
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="base" value="Hospital" />
+              </div>
+              <TextInput required
+                onChange={(e) => setHospital(e.target.value)}
+                value={upHospital} id="base" type="text" sizing="md" />
             </div>
 
             <div>

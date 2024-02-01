@@ -12,6 +12,7 @@ const AddDoctor = () => {
   const [upfirstD, setfirstD] = useState(null);
   const [upsecondD, setsecondD] = useState(null);
   const [upProfession, setProfession] = useState(null);
+  const[upHospital,setHospital]=useState(null);
 
   const handleDateFirst = (datef) => {
     setfirstD(datef.toLocaleDateString('en-US'));
@@ -24,7 +25,7 @@ const AddDoctor = () => {
   var profile = {};
   const validate = () => {
     let res = true;
-    if (upName !== null && upEmail !== null && upfirstD !== null && upsecondD !== null && upProfession !== null) {
+    if (upName !== null && upEmail !== null && upfirstD !== null && upsecondD !== null && upProfession !== null && upHospital!==null) {
       profile = {
         Name: upName,
         Email: upEmail,
@@ -33,6 +34,7 @@ const AddDoctor = () => {
         Profession: upProfession,
         Numpatients: '0',
         maxPatient: '15',
+        addrs:upHospital,
         OfficePhone: '0116541033'
       }
       res = true;
@@ -98,6 +100,14 @@ const AddDoctor = () => {
               <TextInput required
                 onChange={(e) => setProfession(e.target.value)}
                 value={upProfession} id="base" type="text" sizing="md" />
+            </div>
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="base" value="Hospital" />
+              </div>
+              <TextInput required
+                onChange={(e) => setHospital(e.target.value)}
+                value={upHospital} id="base" type="text" sizing="md" />
             </div>
 
             <Footer.Divider />
