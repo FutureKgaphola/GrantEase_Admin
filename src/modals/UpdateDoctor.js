@@ -30,6 +30,7 @@ const UpdateDoctor = ({ Docprofile }) => {
           setProfession(snapshot.data()?.Profession.trim());
           setNumpatients(snapshot.data()?.Numpatients.trim());
           setmaxPatient(snapshot.data()?.maxPatient.trim());
+          setHospital(snapshot.data()?.addrs.trim())
 
         } catch (error) {
             failure(String(error));

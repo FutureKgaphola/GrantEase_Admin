@@ -1,0 +1,14 @@
+[debug] [2024-02-01T11:50:30.579Z] ----------------------------------------------------------------------
+[debug] [2024-02-01T11:50:30.583Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\future\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-02-01T11:50:30.584Z] CLI Version:   13.0.3
+[debug] [2024-02-01T11:50:30.585Z] Platform:      win32
+[debug] [2024-02-01T11:50:30.585Z] Node Version:  v18.18.0
+[debug] [2024-02-01T11:50:30.596Z] Time:          Thu Feb 01 2024 11:50:30 GMT+0000 (Greenwich Mean Time)
+[debug] [2024-02-01T11:50:30.596Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-02-01T11:50:30.827Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-02-01T11:50:30.830Z] > authorizing via signed-in user (devslcx@gmail.com)
+[debug] [2024-02-01T11:50:30.831Z] [iam] checking project sassa-c2b7f for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-02-01T11:50:30.845Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/sassa-c2b7f:testIamPermissions [none]
+[debug] [2024-02-01T11:50:30.846Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/sassa-c2b7f:testIamPermissions x-goog-quota-user=projects/sassa-c2b7f
+[debug] [2024-02-01T11:50:30.847Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/sassa-c2b7f:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
